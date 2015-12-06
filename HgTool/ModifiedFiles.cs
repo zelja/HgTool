@@ -6,7 +6,7 @@ namespace HgTool
     {
         public ModifiedFiles(string commandName)
         {
-            _commandName = commandName;
+            CommandName = commandName;
         }
         public override void ExecuteCommand()
         {
@@ -23,6 +23,16 @@ namespace HgTool
                 Console.WriteLine(checkoutPath + workingDir);
                 ExecuteProcess(appName, command, checkoutPath + workingDir);
             }
+        }
+
+        protected override void CommandOut(string commandOut)
+        {
+            if(commandOut == null)
+                return;
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("\t {0}", commandOut);
+            Console.ResetColor();
         }
     }
 }

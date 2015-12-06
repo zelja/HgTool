@@ -11,6 +11,8 @@ namespace HgTool
             Console.WriteLine("3 - Incoming changes.");
             Console.WriteLine("4 - Outgoing changes.");
             Console.WriteLine("5 - Create bundle.");
+            Console.WriteLine("6 - Push.");
+            Console.WriteLine("7 - Fetch.");
             Console.WriteLine("q - Exit.");
         }
 
@@ -28,6 +30,10 @@ namespace HgTool
                     return "outgoing";
                 case "5" :
                     return "bundle";
+                case "6" :
+                    return "push";
+                case "7":
+                    return "fetch";
                 default:
                     return "";
             }
@@ -38,7 +44,7 @@ namespace HgTool
             if (args == null) throw new ArgumentNullException("args");
 
             Console.WriteLine("Please enter valid operation:");
-            string input = "";
+            string input;
             do
             {
                 PrintMenu();

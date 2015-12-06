@@ -13,6 +13,7 @@ namespace HgTool
             _commandList.Add(new ModifiedFiles("modified"));
             _commandList.Add(new UntracedFiles("untracked"));
             _commandList.Add(new IncomingChanges("incoming"));
+            _commandList.Add(new PushChanges("push"));
         }
 
         public CommandExecute GetCommandExecute(string commandName)

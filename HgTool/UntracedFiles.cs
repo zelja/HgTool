@@ -7,7 +7,7 @@ namespace HgTool
     {
         public UntracedFiles(string commandName)
         {
-            _commandName = commandName;
+            CommandName = commandName;
         }
 
         public override void ExecuteCommand()
@@ -27,11 +27,20 @@ namespace HgTool
             }
         }
 
+        protected override void CommandOut(string commandOut)
+        {
+            if (commandOut == null)
+                return;
+
+            RegexTest(commandOut);
+        }
+
         private void RegexTest(string input)
         {
             string regEx = @"^.*\.(cs|csproj)$";
             string[] array = input.Split('\n');
             MatchCollection mc;
+            Console.ForegroundColor = ConsoleColor.Green;
             foreach (var it in array)
             {
                 mc = Regex.Matches(it, regEx);
@@ -40,6 +49,8 @@ namespace HgTool
                     Console.WriteLine("\t {0}", match);
                 }
             }
+
+            Console.ResetColor();
         }
     }
 }
